@@ -20,8 +20,9 @@ def _pdf_2_img(*k):
     info=pdfinfo_from_path(k[0]+'.pdf')
     mxpg= info["Pages"]
     print(mxpg)
-    for _b in range(1,mxpg,10):
-        images=convert_from_path(k[0]+'.pdf',first_page=_b,last_page=min(_b+9,mxpg),output_folder=k[1])
+    _di=2
+    for _b in range(1,mxpg,_di):
+        images=convert_from_path(k[0]+'.pdf',first_page=_b,last_page=min(_b+_di-1,mxpg),output_folder=k[1])
         for _i in range(0,len(images)):
             images[_i].save(k[1]+'/'+'page_'+ str(_i+_b) +'.jpg', 'JPEG')
             print(' Page ----> ',_b+_i)
